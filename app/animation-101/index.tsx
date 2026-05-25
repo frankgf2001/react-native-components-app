@@ -1,3 +1,4 @@
+import { useAnimation } from '@/hooks/useAnimation';
 import ThemedButton from '@/presentation/shared/ThemedButton';
 import ThemedText from '@/presentation/shared/ThemedText';
 import ThemedView from '@/presentation/shared/ThemedView';
@@ -6,39 +7,14 @@ import { View, Text, Animated, Easing } from 'react-native';
 
 const Animation101Screen = () => {
 
-  const animatedOpacity = useRef(new Animated.Value(0)).current;
-  const animatedTop = useRef(new Animated.Value(-100)).current;
-
-  const fadeIn = () => {
-    Animated.timing(animatedOpacity,{
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true
-    }).start();
-
-    Animated.timing(animatedTop, {
-      toValue: 0,
-      duration: 700,
-      useNativeDriver: true,
-      //easing: Easing.elastic(3)
-      easing: Easing.bounce
-    }).start();
-  }
-
-  const fadeOut = () => {
-    Animated.timing(animatedOpacity,{
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: true
-    }).start();
-
-    Animated.timing(animatedTop, {
-      toValue: +100,
-      duration: 700,
-      useNativeDriver: true,
-      easing: Easing.bounce
-    }).start(() => animatedTop.resetAnimation());
-  }
+  const { 
+    fadeIn, 
+    fadeOut, 
+    animatedOpacity, 
+    animatedTop,
+    startMovingTopPosition,
+    startMovingBottomPosition 
+  } = useAnimation()
 
   return (
     <ThemedView
@@ -60,11 +36,19 @@ const Animation101Screen = () => {
         }}
       />
 
-      <ThemedButton className='my-5' onPress={fadeIn}>
+      <ThemedButton className='my-5' onPress={() => {
+        fadeIn({})
+        startMovingTopPosition({
+          initialPosition: -200
+        })
+      }}>
         Fade In 
       </ThemedButton>
 
-      <ThemedButton className='my-5' onPress={fadeOut}>
+      <ThemedButton className='my-5' onPress={() => {
+        fadeOut({})
+        startMovingBottomPosition({})
+      }}>
         Fade Out 
       </ThemedButton>
     </ThemedView>
