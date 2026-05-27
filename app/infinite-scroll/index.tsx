@@ -1,4 +1,5 @@
 import { useThemeColor } from '@/hooks/use-theme-color';
+import FadeInImage from '@/presentation/images/FadeInImage';
 import ThemedView from '@/presentation/shared/ThemedView';
 import { useState } from 'react';
 import { View, Text, FlatList, Image, ActivityIndicator } from 'react-native';
@@ -26,6 +27,7 @@ const InfiniteScrollScreen = () => {
         renderItem={({ item }) => (
           <ListItem number={ item }/>
         )}
+        keyExtractor={(item) => item.toString()}
         onEndReached={ loadMore }
         onEndReachedThreshold={ 0.6 }
         ListFooterComponent={() => (
@@ -47,12 +49,20 @@ interface ListItemProps {
 
 const ListItem = ({ number }: ListItemProps) => {
   return(
-    <Image
-      source={{ uri: `https://picsum.photos/id/${number}/500/400` }}
+    <FadeInImage
+      uri={ `https://picsum.photos/id/${number}/500/400` }
       style = {{
         height: 400,
         width: '100%'
       }}
     />
+
+    // <Image
+    //   source={{ uri: `https://picsum.photos/id/${number}/500/400` }}
+    //   style = {{
+    //     height: 400,
+    //     width: '100%'
+    //   }}
+    // />
   )
 }
