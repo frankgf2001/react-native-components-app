@@ -42,7 +42,7 @@ const FadeInImage = ({uri, style}: Props) => {
                 ]}
                 onLoadEnd={() => {
                     fadeIn({
-                        duration: 5000
+                        duration: 1500
                     });
                     setIsLoading(false);
                 }}
