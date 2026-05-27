@@ -6,28 +6,25 @@ import { StatusBar } from 'expo-status-bar'
 import { Platform } from "react-native";
 
 
-const ModalWindow = () => {
+const ModalWindow2 = () => {
     return (
         <ThemedView
             className="justify-center items-center flex-1"
             bgColor="#A45213"
         >
-            <ThemedText type="h2">Hola, estoy empezando a usar el Modal</ThemedText>
+            <ThemedText>Gracias por usar Modal</ThemedText>
 
-            <ThemedButton
-                onPress={() => router.push('/modal/modal-window-2')}
-                className="my-4"
+            <ThemedButton 
+                onPress={() => router.dismissAll()}
+                className="my-5"
             >
-                Ir al último modal
-            </ThemedButton>
-
-            <ThemedButton onPress={() => router.dismiss()}>
                 Cerrar modal
             </ThemedButton>
+
 
             <StatusBar style={ Platform.OS == 'ios' ? 'light' : 'auto' }/>
         </ThemedView>
     )
 }
 
-export default ModalWindow;
+export default ModalWindow2;
