@@ -1,7 +1,5 @@
-import { Platform, Pressable, Switch, Text, View } from "react-native";
+import { Pressable, Switch, View } from "react-native";
 import ThemedText from "./ThemedText";
-import { useThemeColor } from "@/hooks/use-theme-color";
-import { red } from "react-native-reanimated/lib/typescript/Colors";
 
 interface Props {
     text?: string;
@@ -11,12 +9,7 @@ interface Props {
     onValueChange: (value: boolean) => void
 }
 
-const isAndroid = Platform.OS == 'android';
-
 const ThemedSwitch = ({ text, value, className, onValueChange }:Props) => {
-
-    const switchActiveColor = useThemeColor({}, 'text')
-
     return (
         <Pressable
             className={`flex flex-row mx-2 items-center justify-between active:opacity-80 ${className}`}
@@ -28,11 +21,11 @@ const ThemedSwitch = ({ text, value, className, onValueChange }:Props) => {
             <Switch 
                 value={value} 
                 onValueChange={ onValueChange }
-                thumbColor={ isAndroid ? switchActiveColor : '' }
-                ios_backgroundColor={value ? 'green' : 'red'}
+                thumbColor={ value ? '#069615' : '#79807a' }
+                ios_backgroundColor={ value ? '#069615' : '#79807a'  }
                 trackColor={{
-                    false: 'red',
-                    true: 'blue'
+                    false: '#575463',
+                    true: '#88c190'
                 }} 
             />
         </Pressable>
