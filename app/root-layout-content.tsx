@@ -1,12 +1,12 @@
 import { allRoutes } from "@/constants/Routes";
+import { useThemeColor } from "@/hooks/use-theme-color";
 import { useThemeChangerContext } from "@/presentation/context/ThemeChangerContext";
 import { Stack } from "expo-router";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 
 const RootLayoutContent = () => {
-
-    const { bgColor } = useThemeChangerContext()
+    const bgColor = useThemeColor({}, 'background');
 
     return (
         <GestureHandlerRootView style = {{ backgroundColor: bgColor, flex: 1 }}>
