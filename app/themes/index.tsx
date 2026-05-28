@@ -2,22 +2,19 @@ import ThemedCard from '@/presentation/shared/ThemedCard';
 import ThemedSwitch from '@/presentation/shared/ThemedSwtich';
 import ThemedView from '@/presentation/shared/ThemedView';
 import { useState } from 'react';
-import { View, Text } from 'react-native';
-
-import { useColorScheme } from "nativewind";
+import { useThemeChangerContext } from '@/presentation/context/ThemeChangerContext';
 
 const ThemesScreen = () => {
 
-  const { colorScheme, setColorScheme } = useColorScheme();
-  // const theme = useColorScheme();
+  const { toggleTheme, currentTheme, isSystemTheme, setSystemTheme } = useThemeChangerContext();
 
   const [darkModeSettings, setDarkModeSettings] = useState({
-    darkMode: colorScheme == 'dark',
-    systemdMode: false
+    darkMode: currentTheme == 'dark',
+    systemdMode: isSystemTheme
   })
 
   const setDarkMode = (value: boolean) => {
-    setColorScheme(value ? 'dark' : 'light')
+    toggleTheme(value);
 
     setDarkModeSettings({
       darkMode: value,
@@ -26,7 +23,7 @@ const ThemesScreen = () => {
   }
   
   const setSystemMode = (value: boolean) => {
-    setColorScheme(value ? 'system' : (colorScheme == 'dark' ? 'dark' : 'light')  )
+    setSystemTheme(value);
 
     setDarkModeSettings({
       darkMode: darkModeSettings.darkMode,

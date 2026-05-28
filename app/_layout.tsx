@@ -10,6 +10,7 @@ import { Stack } from 'expo-router';
 import { allRoutes } from '@/constants/Routes';
 
 import "../global.css"
+import { ThemeChangerProvider } from '@/presentation/context/ThemeChangerContext';
 
 export default function RootLayout() {
   
@@ -18,7 +19,8 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style = {{ backgroundColor: backgroundColor, flex: 1 }}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      {/* <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}> */}
+      <ThemeChangerProvider>
         <Stack
           screenOptions={{
             headerShadowVisible: false,
@@ -50,7 +52,8 @@ export default function RootLayout() {
             ))
           }
         </Stack>
-      </ThemeProvider>
+      </ThemeChangerProvider>
+      {/* </ThemeProvider> */}
     </GestureHandlerRootView> 
 
   );
