@@ -1,11 +1,18 @@
 import { animationMenuRoutes, menuRoutes, uiMenuRoutes } from "@/constants/Routes";
+import { useThemeChangerContext } from "@/presentation/context/ThemeChangerContext";
 import MenuItem from "@/presentation/menu/MenuItem";
 import ThemedView from "@/presentation/shared/ThemedView";
 import { View } from "react-native"
 
 const ComponentsApp = () => {
+
+    const { bgColor } = useThemeChangerContext();
+
     return (
-        <ThemedView margin>
+        <ThemedView 
+            margin
+            bgColor={ bgColor }
+        >
             {
                 animationMenuRoutes.map((route, index) => (
                     <MenuItem 
